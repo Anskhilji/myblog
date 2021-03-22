@@ -21,8 +21,9 @@ class ChangeInfo extends Controller
         $validatedData = $request->validate([
            'name' => 'required|string|regex:/^[a-zA-ZÑñ\s]+$/|max:25|min:2',
            'email' => 'required|email',
-           'slug' => 'required|string|regex:/^[a-zA-ZÑñ\s]+$/',
+           'slug' => 'required|string|regex:/^[a-zA-ZÑñ\s]+$/|min:1|max:50',
            'old_password' => 'required',
+           'password' => 'nullable|min:3|max:50',
         ]);
 
         $check = User::first();

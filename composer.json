@@ -12,8 +12,10 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "hassankwl1001/mediapanel": "dev-master",
         "laravel/framework": "^8.12",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "doctrine/dbal": "v2.4.2"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -41,6 +43,9 @@
         }
     },
     "autoload-dev": {
+        "files":[
+            "app/Helpers/common.php"
+        ],
         "psr-4": {
             "Tests\\": "tests/"
         }

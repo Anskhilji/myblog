@@ -33,7 +33,7 @@
                         </ul>
                     </li>
 
-                    <li class="pcoded-hasmenu {{ request()->is('admin/all/post') || request()->is('admin/edit/post*') ? 'pcoded-trigger' : ''}}
+                    <li class="pcoded-hasmenu {{ request()->is('admin/all/post') || request()->is('admin/post/edit*') || request()->is('admin/post/draft*') || request()->is('admin/post/publish*') ? 'pcoded-trigger' : ''}}
                     {{ request()->is('admin/create/post') ? 'pcoded-trigger' : ''}} ">
                         <a href="javascript:void(0)">
                             <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
@@ -45,9 +45,46 @@
                                     <span class="pcoded-mtext">Create Post</span>
                                 </a>
                             </li>
-                            <li class="{{ request()->is('admin/all/post') || request()->is('admin/edit/post*')? 'active' : ''}}">
+                            <li class="{{ request()->is('admin/all/post')
+                                || request()->is('admin/post/edit*')
+                                || request()->is('admin/post/draft*')
+                                || request()->is('admin/post/publish*') ? 'active' : ''}}">
                                 <a href="{{ route('all.post') }}">
                                     <span class="pcoded-mtext">All Post</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="pcoded-hasmenu
+                        {{ request()->is('admin/subscriber/list')
+                        || request()->is('admin/subscriber/edit*')
+                        || request()->is('admin/send/email') ? 'pcoded-trigger' : '' }}
+                        ">
+                        <a href="javascript:void(0)">
+                            <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                            <span class="pcoded-mtext">Subscribers</span>
+                        </a>
+                        <ul class="pcoded-submenu">
+                            <li class="
+                                {{
+                                request()->is('admin/subscriber/list') ||
+                                request()->is('admin/subscriber/edit*') ||
+                                 request()->is('admin/send/email') ? 'active' : ''
+                                }}
+                                ">
+                                <a href="{{ route('send.email') }}">
+                                    <span class="pcoded-mtext">Send Email</span>
+                                </a>
+                            </li>
+
+                            <li class="
+                                {{ request()->is('admin/subscriber/list')
+                                || request()->is('admin/subscriber/edit*') ? 'active' : '' }}
+                                ">
+                                <a href="{{ route('subscriber.list') }}">
+                                    <span class="pcoded-mtext">List</span>
                                 </a>
                             </li>
 

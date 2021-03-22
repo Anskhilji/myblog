@@ -36,12 +36,36 @@
 
     <!-- feather Awesome -->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend\assets\icon\feather\css\feather.css') }}">
+
     <!-- Style.css -->
     <!-- Notification.css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend\assets\pages\notification\notification.css') }}">
     <!-- Animate.css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend\bower_components\animate.css\css\animate.css') }}">
+    <!-- Tags css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend\bower_components\bootstrap-tagsinput\css\bootstrap-tagsinput.css') }}">
+    @if(Request::segment(2) == 'create' && Request::segment(3) == 'post')
+        <!-- Select 2 css -->
+            <link rel="stylesheet" href="{{ asset('backend\bower_components\select2\css\select2.min.css') }}">
+            <!-- Multi Select css -->
+            <link rel="stylesheet" type="text/css" href="{{ asset('backend\bower_components\bootstrap-multiselect\css\bootstrap-multiselect.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('backend\bower_components\multiselect\css\multi-select.css') }}">
+            <!-- Switch component css -->
+            <link rel="stylesheet" type="text/css" href="{{ asset('backend\bower_components\switchery\css\switchery.min.css') }}">
+    @endif
 
+    @if(Request::segment(2) == 'post' && Request::segment(3) == 'edit')
+        <!-- Select 2 css -->
+            <link rel="stylesheet" href="{{ asset('backend\bower_components\select2\css\select2.min.css') }}">
+            <!-- Multi Select css -->
+            <link rel="stylesheet" type="text/css" href="{{ asset('backend\bower_components\bootstrap-multiselect\css\bootstrap-multiselect.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('backend\bower_components\multiselect\css\multi-select.css') }}">
+            <!-- Switch component css -->
+            <link rel="stylesheet" type="text/css" href="{{ asset('backend\bower_components\switchery\css\switchery.min.css') }}">
+        @endif
+
+<!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend\assets\icon\font-awesome\css\font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('backend\assets\css\style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('backend\assets\css\jquery.mCustomScrollbar.css') }}">
 </head>

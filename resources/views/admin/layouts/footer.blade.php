@@ -12,6 +12,65 @@
 <script type="text/javascript" src="{{ asset('backend/bower_components/jquery-ui/js/jquery-ui.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('backend/bower_components/popper.js/js/popper.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('backend/bower_components/bootstrap/js/bootstrap.min.js') }}"></script>
+@if(Request::segment(2) == 'create' && Request::segment(3) == 'post')
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]){
+                var reader = new FileReader();
+                reader.onload  = function (e) {
+                    $('#one')
+                    .attr('src', e.target.result)
+                    .width(200)
+                    .height(150);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function readURL2(input) {
+            if (input.files && input.files[0]){
+                var reader = new FileReader();
+                reader.onload  = function (e) {
+                    $('#two')
+                    .attr('src', e.target.result)
+                    .width(200)
+                    .height(150);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+@endif
+
+@if(Request::segment(2) == 'post' && Request::segment(3) == 'edit')
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]){
+                var reader = new FileReader();
+                reader.onload  = function (e) {
+                    $('#one')
+                    .attr('src', e.target.result)
+                    .width(200)
+                    .height(150);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function readURL2(input) {
+            if (input.files && input.files[0]){
+                var reader = new FileReader();
+                reader.onload  = function (e) {
+                    $('#two')
+                    .attr('src', e.target.result)
+                    .width(200)
+                    .height(150);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+@endif
 <!-- jquery slimscroll js -->
 <script type="text/javascript" src="{{ asset('backend/bower_components/jquery-slimscroll/js/jquery.slimscroll.js') }}"></script>
 <!-- modernizr js -->
@@ -41,9 +100,58 @@
 @endif
 
 @if(Request::segment(2) == 'create' && Request::segment(3) == 'post')
+    {!! full_editor() !!}
+    <!-- Select 2 js -->
+    <script type="text/javascript" src="{{asset("backend\bower_components\select2\js\select2.full.min.js")}}"></script>
+    <!-- Multiselect js -->
+    <script type="text/javascript" src="{{asset("backend\bower_components\bootstrap-multiselect\js\bootstrap-multiselect.js")}}">
+
+
+    </script>
+    <script type="text/javascript" src="{{asset("backend\bower_components\multiselect\js\jquery.multi-select.js")}}"></script>
+    <script type="text/javascript" src="{{asset("backend\assets\js\jquery.quicksearch.js")}}"></script>
+    <!-- Custom js -->
+    <script type="text/javascript" src="{{asset("backend\assets\pages\advance-elements\select2-custom.js")}}"></script>
+
+    <script type="text/javascript" src="{{ asset('backend\bower_components\switchery\js\switchery.min.js') }}"></script>
+
+    <script>
+        var elemsingle = document.querySelector('.js-single');
+        var switchery = new Switchery(elemsingle, { color: '#4680ff', jackColor: '#fff' });
+    </script>
 
 @endif
 
+@if(Request::segment(2) == 'post' && Request::segment(3) == 'edit')
+    {!! full_editor() !!}
+    <!-- Select 2 js -->
+    <script type="text/javascript" src="{{asset("backend\bower_components\select2\js\select2.full.min.js")}}"></script>
+    <!-- Multiselect js -->
+    <script type="text/javascript" src="{{asset("backend\bower_components\bootstrap-multiselect\js\bootstrap-multiselect.js")}}">
+
+
+    </script>
+    <script type="text/javascript" src="{{asset("backend\bower_components\multiselect\js\jquery.multi-select.js")}}"></script>
+    <script type="text/javascript" src="{{asset("backend\assets\js\jquery.quicksearch.js")}}"></script>
+    <!-- Custom js -->
+    <script type="text/javascript" src="{{asset("backend\assets\pages\advance-elements\select2-custom.js")}}"></script>
+    <script type="text/javascript" src="{{ asset('backend\bower_components\switchery\js\switchery.min.js') }}"></script>
+
+    <script>
+        var elemsingle = document.querySelector('.js-single');
+        var switchery = new Switchery(elemsingle, { color: '#4680ff', jackColor: '#fff' });
+    </script>
+@endif
+
+
+@if(Request::segment(2) == 'send' && Request::segment(3) == 'email')
+    {!! full_editor() !!}
+@endif
+<!-- Switch component js -->
+
+<!-- Tags js -->
+<script type="text/javascript" src="{{ asset('backend\bower_components\bootstrap-tagsinput\js\bootstrap-tagsinput.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/typeahead.bundle.min.js"></script>
 <!-- Custom js -->
 {{--<script type="text/javascript" src="{{ asset('backend/assets/js/SmoothScroll.js') }}"></script>--}}
 <script src="{{ asset('backend/assets/js/pcoded.min.js') }}"></script>
@@ -57,6 +165,7 @@
 
 
 <script>
+
     @if (Session::has('message'))
     let type = "{{ Session::get('alert-type','info') }}";
     switch (type) {

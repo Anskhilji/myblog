@@ -4,7 +4,7 @@
         <div class="pcoded-inner-content">
             <div class="main-body">
                 <div class="page-wrapper">
-
+{{--{{ dd($categories) }}--}}
                     <div class="page-body">
                         <div class="row">
                             <div class="col-sm-12">
@@ -33,14 +33,22 @@
                                                             <td>{{$i++}}</td>
                                                             <td>{{ $category->category_name }}</td>
                                                             <td>{{ $category->created_at->diffForHumans() }}</td>
-                                                            <td>
-                                                                <a href="{{ route('edit.category', $category->id) }}" class="btn btn-primary float-left mr-2">Edit</a>
-                                                                <form action="{{ route('delete.category', $category->id) }}" method="post">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <input type="submit" class="btn btn-danger" onclick="return confirm('Are you sure? It will IRREVERSIBLY delete all the post of related this category')" value="Delete">
-                                                                </form>
-                                                            </td>
+                                                            @if($category->id != 1)
+                                                                <td>
+                                                                    <a href="{{ route('edit.category', $category->id) }}" class="btn btn-primary float-left mr-2">Edit</a>
+                                                                    <form action="{{ route('delete.category', $category->id) }}" method="post">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <input type="submit" class="btn btn-danger" onclick="return confirm('Are you sure? It will IRREVERSIBLY converted into general category.')" value="Delete">
+                                                                    </form>
+                                                                </td>
+                                                            @else
+                                                                <td>
+                                                                    <a href="{{ route('edit.category', $category->id) }}" class="btn btn-primary float-left mr-2">Edit</a>
+                                                                </td>
+
+                                                            @endif
+
                                                         </tr>
                                                     @endforeach
                                                 </tfoot>
