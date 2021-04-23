@@ -22,7 +22,6 @@ class CategoryController extends Controller
 
     public function StoreCategory(Request $request)
     {
-//        dd($request->all());
         $validatedData = $request->validate([
             'category_name' => 'required|string|regex:/^[a-zA-ZÑñ\s]+$/|min:3|max:255|unique:categories,category_name',
             'slug' => 'required|min:3|max:255|',
@@ -81,7 +80,7 @@ class CategoryController extends Controller
     }
 
 
-
+// when delete category, the id of category convert into general category
     public function DeleteCategory(Category $category)
     {
         $verify = Post::whereRaw("FIND_IN_SET(?, category_id) > 0", $category->id)->get();

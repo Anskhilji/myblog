@@ -21,7 +21,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="exampleInputUsernamel1">Category Name<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control post-for-slug" name="category_name" id="exampleInputUsernamel1" aria-describedby="emailHelp" placeholder="Category Name">
+                                    <input type="text" class="form-control post-for-slug" name="category_name" value="{{ old('slug') }}" id="exampleInputUsernamel1" aria-describedby="emailHelp" placeholder="Category Name">
                                     <span class="text-danger">@error('category_name'){{$message}}@enderror</span>
                                 </div>
                             </div>
@@ -181,7 +181,6 @@
         let addMore = document.querySelector('#add-more');
         let append = document.querySelector('.add-schema');
 
-
         addMore.addEventListener('click', function (e) {
             e.preventDefault();
             let html = `
@@ -205,8 +204,6 @@
                 e.target.closest('.add-schema').remove();
             })
         });
-
-
 
     </script>
 @endsection

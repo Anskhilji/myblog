@@ -13,7 +13,7 @@
                                 <!-- Zero config.table start -->
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>All Blog Post</h4>
+                                        <h4 class="float-left">All Blog Post</h4>
                                         <a href="{{ route('all.draft.post') }}" class="btn btn-mat {{ (request()->segment('3') == "draft" ) ? "btn-inverse" : "btn-info" }} float-right ml-2">Draft</a>
                                         <a href="{{ route('all.publish.post') }}" class="btn btn-mat {{ (request()->segment('3') == "publish" ) ? "btn-inverse" : "btn-info" }} float-right ml-2">Published</a>
                                         <a href="{{ route('create.post') }}" class="btn btn-mat btn-info float-right ml-2">Create New</a>
@@ -25,11 +25,12 @@
                                             <table id="simpletable" class="table table-striped table-bordered nowrap">
                                                 <thead>
                                                 <tr>
-                                                    <th>ID</th>
-                                                    <th style="width: 20.66%">Post Title</th>
-                                                    <th style="width: 20.66%">Category Name</th>
+                                                    <th style="width: 10.66%">ID</th>
+                                                    <th style="width: 10.66%">Post Title</th>
+                                                    <th style="width: 10.66%">Category Name</th>
                                                     <th style="width: 10.66%">Post Image</th>
-                                                    <th>Crated At</th>
+                                                    <th style="width: 12.66%">Crated At</th>
+                                                    <th style="width: 10.66%">Post View</th>
                                                     <th>Action</th>
 
                                                 </tr>
@@ -39,27 +40,28 @@
                                                     @foreach($posts as $post)
                                                         <tr>
                                                             <td>{{ $i++ }}</td>
-                                                            <td style="width: 20.66%">{{ $post->post_title }}</td>
-                                                            <td style="width: 20.66%">{{getCategoryName($post->category_id)}}</td>
-                                                            <td style="width: 10.66%">
+                                                            <td>{{ \Illuminate\Support\Str::limit($post->post_title,20 ) }}</td>
+                                                            <td>{{getCategoryName($post->category_id)}}</td>
+                                                            <td>
                                                                 <img src="{{asset( $post->post_cover_image)}}" alt="" width="80" height="60">
                                                             </td>
                                                             <td>{{ $post->created_at->diffForHumans() }}</td>
+                                                            <td>{{ $post->post_view }}</td>
                                                             <td>
                                                                 @if($post->post_status == 1)
-                                                                    <a href="{{ route('post.draft', $post->id) }}" class="btn btn-inverse  mr-1" title="Draft" style="float: left">
+                                                                    <a href="{{ route('post.draft', $post->id) }}" class="btn btn-inverse  mr-1 btn-sm" title="Draft" style="float: left">
                                                                         <i class="fa fa-thumbs-o-down fa-1x"></i>
                                                                     </a>
                                                                 @else
-                                                                    <a href="{{ route('post.publish', $post->id) }}" class="btn btn-warning  mr-1" title="Publish" style="float: left">
+                                                                    <a href="{{ route('post.publish', $post->id) }}" class="btn btn-warning  mr-1 btn-sm" title="Publish" style="float: left">
                                                                         <i class="fa fa-thumbs-o-up fa-1x"></i>
                                                                     </a>
                                                                 @endif
-                                                                <a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary mr-1" style="float: left">Edit</a>
+                                                                <a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary mr-1 btn-sm" style="float: left">Edit</a>
                                                                 <form action="{{ route('post.delete', $post) }}" method="post">
                                                                     @csrf
                                                                     @method('DELETE')
-                                                                    <input type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger mr-1" value="Delete">
+                                                                    <input type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger mr-1 btn-sm" value="Delete">
                                                                 </form>
                                                             </td>
                                                         </tr>

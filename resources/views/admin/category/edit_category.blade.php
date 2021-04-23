@@ -15,8 +15,6 @@
 
                     <form action="{{ route('update.category', $category->id) }}" method="post">
                         @csrf
-
-
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -40,7 +38,7 @@
                                 <label for="#metatitle">Meta Title<span class="text-danger">*</span></label>
                                 <div class="input-group">
                                     <input type="text" class="form-control meta-input" name="meta_title" value="{{ old('meta_title', $category->meta_title) }}"  id="metatitle" placeholder="Meta Title">
-                                    <span class="input-group-addon meta-title" >0</span>
+                                    <span class="input-group-addon meta-title" >{{ strlen($category->meta_title) }}</span>
                                 </div>
                                 <span class="text-danger">@error('meta_title'){{$message}}@enderror</span>
                             </div>
@@ -51,7 +49,7 @@
                                 <label for="#metatitle">Meta Description</label>
                                 <div class="input-group">
                                     <textarea class="form-control meta-input" name="meta_description" id="schema" rows="5">{!! old('meta_description', $category->meta_description) !!} </textarea>
-                                    <span class="input-group-addon meta-desc" >0</span>
+                                    <span class="input-group-addon meta-desc" >{{ strlen($category->meta_description) }}</span>
                                 </div>
                                 <span class="text-danger">@error('meta_description'){{$message}}@enderror</span>
                             </div>

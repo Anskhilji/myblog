@@ -14,14 +14,14 @@ class SubscriberController extends Controller
 {
     public function SubscriberList()
     {
-        $subscribers = Subscriber::all();
+        $subscribers = Subscriber::latest()->get();
         return view('admin.subscriber.show_subscribers', compact('subscribers'));
     }
 
     public function SubscriberStore(Request $request)
     {
         $validation = Validator::make($request->all(),[
-           'name' => 'required|min:2|max:25|string|regex:/^[a-zA-ZÑñ\s]+$/',
+           'name' => 'required|min:2|max:18|string|regex:/^[a-zA-ZÑñ\s]+$/',
            'email' => 'required|email|unique:subscribers,email',
         ],[
             'name.regex' => 'only character are allowed',
@@ -87,7 +87,7 @@ class SubscriberController extends Controller
 //    Send Email
     public function SendEmailShowList()
     {
-        $subscribers = Subscriber::all();
+        $subscribers = Subscriber::latest()->get();
        return view('admin.subscriber.send_email', compact('subscribers'));
     }
 
@@ -102,7 +102,6 @@ class SubscriberController extends Controller
             'selected_email.required' => 'Please select an email'
         ]);
         if ($request->has('select_all')){
-
             $subscribers = Subscriber::all();
             $comma_seperated = array();
             $comma_names = array();
@@ -112,25 +111,20 @@ class SubscriberController extends Controller
 
                 Mail::send('admin.subscriber.email_template',array('body' => request('email_detail')),function ($message) use ($sub) {
                     $message->to($sub->email,$sub->name)->subject(request('email_subject'));
-                    $message->from('anskhilji900@gmail.com','My Blog');
-                });
+                    $message->from('common@unifyp.com','My Blog');
+                  });
             }
-
             $notification = array(
                 'message'       => 'Email Send Successfully',
                 'alert-type'    => 'success'
             );
-
             return redirect()->back()->with($notification);
-
-
         }
 
         if ($request->has('selected_email')){
             $subscribers = DB::table('subscribers')
                 ->whereIn('id', $request->selected_email)
                 ->get();
-
             if (count($subscribers)){
                 foreach ($subscribers as $sub){
 
@@ -139,7 +133,6 @@ class SubscriberController extends Controller
                         $message->from('anskhilji900@gmail.com','My Blog');
                     });
                 }
-
                 $notification = array(
                     'message'       => 'Email Send Successfully',
                     'alert-type'    => 'success'
@@ -156,9 +149,6 @@ class SubscriberController extends Controller
             }
 
         }
-
-
-
 
     }
 

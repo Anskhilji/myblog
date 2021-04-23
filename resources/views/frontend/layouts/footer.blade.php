@@ -7,22 +7,20 @@
                 <!--Widget Column-->
                 <div class="widget-column col-lg-6 col-md-6 col-sm-12">
                     <div class="footer-widget tweets-widget">
-                        <h2>Tweeter Feeds</h2>
-                        <!--Tweet-->
-                        <div class="tweet">
-                            <div class="icon"><span class="fa fa-twitter"></span></div>
-                            <div class="text">
-                                <a href="#">@ Barished all share them a man said inspet.</a>
-                            </div>
-                            <span class="days">about 2 days ago</span>
-                        </div>
-                        <!--Tweet-->
-                        <div class="tweet">
-                            <div class="icon"><span class="fa fa-twitter"></span></div>
-                            <div class="text">
-                                <a href="#">@ Well wors all share them a women said inspet.</a>
-                            </div>
-                            <span class="days">about 8 weeks ago</span>
+                        <div class="sidebar-widget categories-widget">
+                                <div class="sidebar-title" style="background-color: #28292D">
+                                    <h2>Recent Post</h2>
+                                </div>
+                            @forelse(\App\Models\Post::where('post_status',1)->orderBy('id','desc')->limit(3)->get() as $rp)
+                                <article class="widget-post">
+                                    <figure class="post-thumb"><a href="{{ url($rp->slug.'-'.'2'.$rp->id) }}">
+                                            <img class="wow fadeIn animated" data-wow-delay="0ms" data-wow-duration="2500ms" src="{{ asset($rp->post_cover_image) }}" alt="" style="visibility: visible; animation-duration: 2500ms; animation-delay: 0ms; animation-name: fadeIn;"></a><div class="overlay"><span class="icon qb-play-arrow"></span></div></figure>
+                                    <div class="text"><a href="{{ url($rp->slug.'-'.'2'.$rp->id) }}" style="color: #fff;">{{ $rp->post_title }}</a></div>
+                                    <div class="post-info">{{ $rp->created_at->diffForHumans() }}</div>
+                                </article>
+                            @empty
+                                <h3>No Post Available</h3>
+                            @endforelse
                         </div>
                     </div>
                 </div>
@@ -31,8 +29,7 @@
                 <!--Widget Column / Newsletter Widget-->
                 <div class="widget-column col-lg-6 col-md-6 col-sm-12">
                     <div class="footer-widget newsletter-widget">
-
-                        <h2>Newsletter</h2>
+                        <h1>Newsletter</h1>
                         <div class="newsletter-form">
                             <form method="post" action="{{ route('store.subscriber') }}" class="form">
                                 @csrf
@@ -45,13 +42,19 @@
                                     <span class="text-danger email-require"></span>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="theme-btn btn-style-one">Subscribe</button>
+                                    <button type="submit" class="theme-btn btn-style-one" style="cursor: pointer">Subscribe</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
 
+            </div>
+            <div class="footer-cptf">
+                <a href="{{ route('contact-us') }}">Contct Us</a>
+                <a href="{{ route('privacy.policy') }}">Privacy Policy</a>
+                <a href="{{ route('terms.condition') }}">Terms & Conditions</a>
+                <a href="{{ route('faqs') }}">FAQs</a>
             </div>
         </div>
     </div>
@@ -64,18 +67,11 @@
                 <div class="row clearfix">
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <ul class="social-icon-one">
-                            <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                            <li class="twitter"><a href="#"><span class="fa fa-twitter"></span></a></li>
-                            <li class="g_plus"><a href="#"><span class="fa fa-google-plus"></span></a></li>
-                            <li class="linkedin"><a href="#"><span class="fa fa-linkedin"></span></a></li>
-                            <li class="pinteret"><a href="#"><span class="fa fa-pinterest-p"></span></a></li>
-                            <li class="android"><a href="#"><span class="fa fa-android"></span></a></li>
-                            <li class="dribbble"><a href="#"><span class="fa fa-dribbble"></span></a></li>
-                            <li class="rss"><a href="#"><span class="fa fa-rss"></span></a></li>
+                            <div class="addthis_inline_share_toolbox"></div>
                         </ul>
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12">
-                        <div class="copyright">&copy; Copyright Noor_tech. All rights reserved.</div>
+                        <div class="copyright">&copy; Copyright Digital Applications. All rights reserved.</div>
                     </div>
                 </div>
             </div>
@@ -92,18 +88,23 @@
 
 <!-- Color Palate / Color Switcher -->
 
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f968771b4d84134"></script>
 
 <script src="{{ asset('frontend/js/jquery.js') }}"></script>
-<script src="{{ asset('frontend/js/popper.min.js') }}"></script>
-<script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('frontend/js/jquery.fancybox.js') }}"></script>
-<script src="{{ asset('frontend/js/owl.js') }}"></script>
-<script src="{{ asset('frontend/js/appear.js') }}"></script>
-<script src="{{ asset('frontend/js/wow.js') }}"></script>
-<script src="{{ asset('frontend/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
-<script src="{{ asset('frontend/js/script.js') }}"></script>
+<script defer src="{{ asset('frontend/js/popper.min.js') }}"></script>
+<script defer src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
+<script defer src="{{ asset('frontend/js/jquery.fancybox.js') }}"></script>
+<script defer src="{{ asset('frontend/js/owl.js') }}"></script>
+<script defer src="{{ asset('frontend/js/appear.js') }}"></script>
+<script defer src="{{ asset('frontend/js/wow.js') }}"></script>
+<script defer src="{{ asset('frontend/js/validate.js') }}"></script
 
-<script>
+<script defer src="{{ asset('frontend/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+
+<script defer src="{{ asset('frontend/js/script.js') }}"></script>
+
+<script defer>
     const form = document.querySelector('.form');
     form.addEventListener('submit', function (e) {
        e.preventDefault();
@@ -158,9 +159,34 @@
 
        sendFormData();
 
-
-
     });
+</script>
+<script>
+    // document.querySelectorAll('.smooth-goto').forEach(el=>{
+    //     el.addEventListener('click', function (e) {
+    //         e.preventDefault();
+    //         const id = this.getAttribute('href');
+    //         let splitId = id.split('#');
+    //         const scrollId = '#'+splitId[1];
+    //
+    //         document.querySelector(scrollId).scrollIntoView({
+    //             behavior: "smooth"
+    //         });
+    //     })
+    // });
+    $(document).ready(function(){
+        $(".smooth-goto").each(function(){
+            $(this).click(function() {
+                var id = $(this).attr("href");
+                var hash = id.split("#");
+                var to  = "#"+hash[1];
+                $([document.documentElement, document.body]).animate({
+                    scrollTop: $(to).offset().top-90
+                }, 500);
+            });
+        });
+    });
+
 </script>
 
 </body>

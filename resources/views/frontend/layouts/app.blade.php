@@ -7,7 +7,6 @@
 
                 @yield('content')
 
-            @include('frontend.layouts.aside')
 
             </div>
 

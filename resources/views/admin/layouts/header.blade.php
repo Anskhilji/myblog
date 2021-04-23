@@ -63,11 +63,14 @@
             <!-- Switch component css -->
             <link rel="stylesheet" type="text/css" href="{{ asset('backend\bower_components\switchery\css\switchery.min.css') }}">
         @endif
-
+@if(Request::segment(1) == 'admin' && Request::segment(2) == 'menu')
+        <link rel="stylesheet" href="{{asset('backend/menu/menu.css')}}">
+@endif
 <!-- Font Awesome -->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend\assets\icon\font-awesome\css\font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('backend\assets\css\style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('backend\assets\css\jquery.mCustomScrollbar.css') }}">
+    <script type="text/javascript" src="{{ asset('backend/bower_components/jquery/js/jquery.min.js') }}"></script>
 </head>
 <!-- Menu sidebar static layout -->
 
@@ -120,7 +123,7 @@
                     <a class="mobile-menu" id="mobile-collapse" href="#!">
                         <i class="feather icon-menu"></i>
                     </a>
-                    <a href="index-1.htm">
+                    <a href="{{ route('base_url') }}" target="_blank">
                         <img class="img-fluid" src="{{ asset('backend/assets/images/logo.png') }}" alt="Theme-Logo">
                     </a>
                     <a class="mobile-options">

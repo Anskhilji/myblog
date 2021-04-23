@@ -13,7 +13,7 @@
                                 <!-- Zero config.table start -->
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>All Publish Post</h4>
+                                        <h4 class="float-left">All Publish Post</h4>
                                         <a href="{{ route('all.draft.post') }}" class="btn btn-mat {{ (request()->segment('3') == "draft" ) ? "btn-inverse" : "btn-info" }} float-right ml-2">Draft</a>
                                         <a href="{{ route('all.publish.post') }}" class="btn btn-mat {{ (request()->segment('3') == "publish" ) ? "btn-inverse" : "btn-info" }} float-right ml-2">Published</a>
                                         <a href="{{ route('create.post') }}" class="btn btn-mat btn-info float-right ml-2">Create New</a>
@@ -26,11 +26,11 @@
                                             <table id="simpletable" class="table table-striped table-bordered nowrap">
                                                 <thead>
                                                 <tr>
-                                                    <th>ID</th>
-                                                    <th style="width: 20.66%">Post Title</th>
-                                                    <th style="width: 20.66%">Category Name</th>
+                                                    <th style="width: 10.66%">ID</th>
+                                                    <th style="width: 10.66%">Post Title</th>
+                                                    <th style="width: 10.66%">Category Name</th>
                                                     <th style="width: 10.66%">Post Image</th>
-                                                    <th>Crated At</th>
+                                                    <th style="width: 12.66%">Crated At</th>
                                                     <th>Action</th>
 
                                                 </tr>
@@ -40,7 +40,7 @@
                                                 @foreach($posts as $post)
                                                     <tr>
                                                         <td>{{ $i++ }}</td>
-                                                        <td style="width: 20.66%">{{ $post->post_title }}</td>
+                                                        <td style="width: 20.66%">{{ \Illuminate\Support\Str::limit($post->post_title,20 ) }}</td>
                                                         <td style="width: 20.66%">{{getCategoryName($post->category_id)}}</td>
                                                         <td style="width: 10.66%">
                                                             <img src="{{asset( $post->post_cover_image)}}" alt="" width="80" height="60">
