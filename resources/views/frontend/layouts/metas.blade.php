@@ -55,6 +55,13 @@
                  $meta_tags = (isset($metas->meta_tags))?$metas->meta_tags:"My Blog, Blog";
                  $post_schema = array();
                  $post_og_img = (isset($metas->og_image))?$metas->og_image:$ogImage;
+         }elseif($segment === "faqs"){
+                $metas = \App\Models\Home::where('page_title', request()->segment(1))->first();
+                 $meta_title = (isset($metas->meta_title))?$metas->meta_title:"My Blog";
+                 $meta_descp = (isset($metas->meta_descp))?$metas->meta_descp:"My Home Page Meta Description";
+                 $meta_tags = (isset($metas->meta_tags))?$metas->meta_tags:"My Blog, Blog";
+                 $post_schema = array();
+                 $post_og_img = (isset($metas->og_image))?$metas->og_image:$ogImage;
          }else{
              switch ($page_id) {
                 case 1:
@@ -119,7 +126,7 @@
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="">
 <meta name="csrf-token" content="CA68LUim4UztU2QZfXLUXCHS1LTrANLbhZB21JxO">
-<meta name="robots" content="nofollow,noindex">
+{{--<meta name="robots" content="nofollow,noindex">--}}
 {!! $web_master !!}
 {!! $bing !!}
 {!! $google_analytics !!}

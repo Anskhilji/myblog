@@ -23,6 +23,10 @@
     <!-- Required Fremwork -->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend\bower_components\bootstrap\css\bootstrap.min.css') }}">
     <!-- themify-icons line icon -->
+{{--   multi tags input--}}
+    <link href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet"/>
+{{--  end multi tags input--}}
+
     <link rel="stylesheet" type="text/css" href="{{ asset('backend\assets\icon\themify-icons\themify-icons.css') }}">
     <!-- ico font -->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend\assets\icon\icofont\css\icofont.css') }}">
@@ -137,7 +141,11 @@
                         <li class="user-profile header-notification">
                             <div class="dropdown-primary dropdown">
                                 <div class="dropdown-toggle" data-toggle="dropdown">
-                                    <span>{{ decrypt(Auth::user()->name) }}</span>
+                                    <span>
+                                        @if (Auth::check())
+                                            {{ decrypt(Auth::user()->name) }}
+                                        @endif
+                                    </span>
                                     <i class="feather icon-chevron-down"></i>
                                 </div>
                                 <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">

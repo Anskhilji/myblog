@@ -14,7 +14,7 @@
                             @forelse(\App\Models\Post::where('post_status',1)->orderBy('id','desc')->limit(3)->get() as $rp)
                                 <article class="widget-post">
                                     <figure class="post-thumb"><a href="{{ url($rp->slug.'-'.'2'.$rp->id) }}">
-                                            <img class="wow fadeIn animated" data-wow-delay="0ms" data-wow-duration="2500ms" src="{{ asset($rp->post_cover_image) }}" alt="" style="visibility: visible; animation-duration: 2500ms; animation-delay: 0ms; animation-name: fadeIn;"></a><div class="overlay"><span class="icon qb-play-arrow"></span></div></figure>
+                                            <img class="wow fadeIn animated" data-wow-delay="0ms" data-wow-duration="2500ms" src="{{ asset($rp->post_cover_image) }}" alt=""  width="85" height="57"  style="visibility: visible; animation-duration: 2500ms; animation-delay: 0ms; animation-name: fadeIn;"></a><div class="overlay"><span class="icon qb-play-arrow"></span></div></figure>
                                     <div class="text"><a href="{{ url($rp->slug.'-'.'2'.$rp->id) }}" style="color: #fff;">{{ $rp->post_title }}</a></div>
                                     <div class="post-info">{{ $rp->created_at->diffForHumans() }}</div>
                                 </article>
@@ -88,8 +88,6 @@
 
 <!-- Color Palate / Color Switcher -->
 
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f968771b4d84134"></script>
 
 <script src="{{ asset('frontend/js/jquery.js') }}"></script>
 <script defer src="{{ asset('frontend/js/popper.min.js') }}"></script>
@@ -103,7 +101,13 @@
 <script defer src="{{ asset('frontend/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
 
 <script defer src="{{ asset('frontend/js/script.js') }}"></script>
-
+<script>
+    jQuery.event.special.touchstart = {
+        setup: function( _, ns, handle ){
+            this.addEventListener("touchstart", handle, { passive: true });
+        }
+    };
+</script>
 <script defer>
     const form = document.querySelector('.form');
     form.addEventListener('submit', function (e) {
@@ -111,7 +115,6 @@
        document.querySelector('.btn-style-one').textContent = 'Sending...';
        const dataArr = [...new FormData(this)];
        const data = Object.fromEntries(dataArr);
-        // console.log(data);
        const sendFormData = async function(){
            try{
                const sendJson = await fetch("{{ route('store.subscriber') }}",{
@@ -161,19 +164,7 @@
 
     });
 </script>
-<script>
-    // document.querySelectorAll('.smooth-goto').forEach(el=>{
-    //     el.addEventListener('click', function (e) {
-    //         e.preventDefault();
-    //         const id = this.getAttribute('href');
-    //         let splitId = id.split('#');
-    //         const scrollId = '#'+splitId[1];
-    //
-    //         document.querySelector(scrollId).scrollIntoView({
-    //             behavior: "smooth"
-    //         });
-    //     })
-    // });
+<script defer>
     $(document).ready(function(){
         $(".smooth-goto").each(function(){
             $(this).click(function() {
@@ -186,6 +177,26 @@
             });
         });
     });
+
+</script>
+<script>
+    function loadfiles(filename, filetype) {
+        if (filetype == "js") { //if filename is a external JavaScript file
+            var fileref = document.createElement('script');
+            fileref.setAttribute("type", "text/javascript");
+            fileref.setAttribute("src", filename);
+        } else if (filetype == "css") { //if filename is an external CSS file
+            var fileref = document.createElement("link");
+            fileref.setAttribute("rel", "stylesheet");
+            fileref.setAttribute("type", "text/css");
+            fileref.setAttribute("href", filename);
+        }
+        if (typeof fileref != "undefined")
+            document.getElementsByTagName("head")[0].appendChild(fileref);
+    }
+    setTimeout(function(){
+        loadfiles("//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f968771b4d84134", "js");
+    }, 7000);
 
 </script>
 

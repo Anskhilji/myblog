@@ -5,6 +5,7 @@
     url('../fonts/quebecb9e1.ttf?4ujjnm') format('truetype'),
     url('../fonts/quebecb9e1.woff?4ujjnm') format('woff'),
     url('../fonts/quebecb9e1.svg?4ujjnm#quebec') format('svg');
+    font-display: swap;
   font-weight: normal;
   font-style: normal;
 }

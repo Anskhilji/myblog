@@ -283,6 +283,9 @@ function search_toc_pattren($keyword="", $content=""){
     preg_match_all($pattren, $content, $matches, PREG_OFFSET_CAPTURE);
     return $matches;
 }
+function generateRandomString($num){
+    return Str::random($num);
+}
 function table_of_content($content = ""){
     $c_url = url()->current();
     $table = "";

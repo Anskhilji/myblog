@@ -90,7 +90,6 @@ class PostController extends Controller
             $faqs_arr[] =$faqs->pluck($i);
         }
 
-
        $data['category_id']         = implode(',',$request->category_id);
        $data['post_title']          = $request->post_title;
        $data['author_id']           = $request->author;
@@ -103,6 +102,7 @@ class PostController extends Controller
        $data['red_text']            = json_encode($red_arr);
        $data['black_text']          = json_encode($black_arr);
        $data['faqs']                = json_encode($faqs_arr);
+       $data['internal_tags']         = $request->internal_links;
        $data['post_detail']         = $request->post_detail;
         $data['post_cover_image']   = request('cover-image');
         $data['post_og_image']      = request('og-image');
@@ -217,9 +217,10 @@ class PostController extends Controller
         $data['red_text']            = json_encode($red_arr);
         $data['black_text']          = json_encode($black_arr);
         $data['faqs']                = json_encode($faqs_arr);
+        $data['internal_tags']       = $request->internal_links;
         $data['post_detail']         = $request->post_detail;
-        $data['post_cover_image']   = request('cover-image');
-        $data['post_og_image']      = request('og-image');
+        $data['post_cover_image']    = request('cover-image');
+        $data['post_og_image']       = request('og-image');
 
 
         if ($request->has('post_status')){

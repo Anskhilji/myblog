@@ -44,7 +44,8 @@
     },
     "autoload-dev": {
         "files":[
-            "app/Helpers/common.php"
+            "app/Helpers/common.php",
+            "app/Helpers/InternalLinks.php"
         ],
         "psr-4": {
             "Tests\\": "tests/"

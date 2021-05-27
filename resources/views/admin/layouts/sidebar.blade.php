@@ -14,7 +14,7 @@
 
                     <li class="{{  request()->is('admin/menu') ? 'active ' : ''  }}">
                         <a href="{{ route('menu') }}">
-                            <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                            <span class="pcoded-micon"><i class="icofont icofont-owl-look"></i></span>
                             <span class="pcoded-mtext">Menu</span>
                         </a>
                     </li>
@@ -69,7 +69,7 @@
 
                     <li class="{{  request()->is('admin/author/list') || request()->is('admin/author/create') || request()->is('admin/author/edit*') ? 'active ' : ''  }}">
                         <a href="{{ route('show.author') }}">
-                            <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                            <span class="pcoded-micon"><i class="icofont icofont-businessman"></i></span>
                             <span class="pcoded-mtext">Author</span>
                         </a>
                     </li>
@@ -156,6 +156,13 @@
                         <a href="{{ route('general.setting') }}">
                             <span class="pcoded-micon"><i class="icofont icofont-settings-alt"></i></span>
                             <span class="pcoded-mtext">General Settings</span>
+                        </a>
+                    </li>
+
+                    <li class="{{  request()->is('admin/internal/link') ? 'active ' : ''  }}">
+                        <a href="{{ route('internal.links') }}">
+                            <span class="pcoded-micon"><i class="icofont icofont-settings-alt"></i></span>
+                            <span class="pcoded-mtext">Internal Links</span>
                         </a>
                     </li>
                     </li>

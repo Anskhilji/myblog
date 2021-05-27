@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Author;
 use App\Models\Post;
 use DB;
 use Illuminate\Http\Request;
@@ -22,6 +23,9 @@ class SitemapController extends Controller
 		$this->links =array(
 			["url"=>$this->home, "priority" => "1.0", "frequency"=>"Daily"],
 			["url"=>$this->home."contact-us", "priority" => "0.8", "frequency"=>"Daily"],
+			["url"=>$this->home."privacy-policy", "priority" => "0.8", "frequency"=>"Daily"],
+			["url"=>$this->home."terms-condition", "priority" => "0.8", "frequency"=>"Daily"],
+			["url"=>$this->home."faqs", "priority" => "0.8", "frequency"=>"Daily"],
 		);
 	}
 
@@ -48,12 +52,24 @@ class SitemapController extends Controller
             $this->links[] = $lk;
         }
     }
+    function author(){
+        $author = Author::all();
+
+        foreach($author as $k=>$v){
+            $link = $v->slug."-3".$v->id;
+            $lk = array(
+                "url" => $this->home.$link, "priority" => "0.5", "frequency"=>"Daily"
+            );
+            $this->links[] = $lk;
+        }
+    }
 
 
     function _common(){
 		$this->_commonLinks();
         $this->posts();
         $this->category();
+        $this->author();
 
 	}
 

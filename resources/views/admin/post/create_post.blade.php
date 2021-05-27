@@ -565,6 +565,16 @@
                         @endif
                         {{--End Black Text--}}
 
+                        {{-- start internal links multi tags input--}}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="#PostDetails">Internal Links</label>
+                                    <input id="input" type="text" data-role="tagsinput" name="internal_links" value="{{ old('internal_links') }}" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    {{--     End internal links multi tags input--}}
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -579,7 +589,7 @@
                                             <i class="fa fa-info"></i> &nbsp; Short Codes Discription
                                         </a>
                                     </div>
-                                    <textarea class="form-control oneditor" name="post_detail" id="oneditor" rows="5" placeholder="Post details...">{!! old('post_detail') !!}</textarea>
+                                    <textarea class="form-control oneditor" name="post_detail" id="oneditor" rows="20" placeholder="Post details...">{!! old('post_detail') !!}</textarea>
                                 </div>
                                 <span class="text-danger">@error('post_detail'){{$message}}@enderror</span>
                             </div>

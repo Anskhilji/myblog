@@ -19,6 +19,7 @@ use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\Admin\CMSController;
 use App\Http\Controllers\Admin\AuthorController;
+use App\Http\Controllers\Admin\InternalLinksController;
 Route::get('sitemap.xml',[SitemapController::class,'_run']);
 Route::get('404',[errorController::class,'errorRedirect'])->name('404');
 
@@ -125,6 +126,9 @@ Route::group(['prefix' => admin], function() {
 // General Settings
     Route::get('general/setting', [GeneralSettingController::class, 'index'])->name('general.setting');
     Route::post('store/setting/', [GeneralSettingController::class, 'StoreSetting'])->name('store.setting');
+//  Internel Links
+    Route::get('internal/link', [InternalLinksController::class, 'InternalLink'])->name('internal.links');
+    Route::post('internal/link/store', [InternalLinksController::class, 'InternalLinkStore'])->name('internal.links.store');
 
 });
 

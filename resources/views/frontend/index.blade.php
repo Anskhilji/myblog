@@ -18,13 +18,18 @@
                     <div class="news-block-one col-lg-6 col-md-6 col-sm-12">
                         <div class="inner-box">
                             <div class="image">
-                                <a href="{{ url($post->slug.'-'.'2'.$post->id) }}" rel="nofollow noopener"><img src="{{ asset($post->post_cover_image) }}" alt="{{ $post->post_title }}" style="height: 230px" /></a>
+                                <a href="{{ url($post->slug.'-'.'2'.$post->id) }}" rel="nofollow noopener"><img src="{{ asset($post->post_cover_image) }}" width="300" height="200" alt="{{ $post->post_title }}" /></a>
                             </div>
                             <div class="lower-box">
                                 <h3><a href="{{ url($post->slug.'-'.'2'.$post->id) }}" rel="nofollow noopener">{{ $post->post_title }}</a></h3>
 
                                 <div class="post-date">{{ $post->created_at->diffForHumans() }}</div>
-                                <div class="text"> {!! trim_words($post->post_detail) !!}</div>
+                            <?php
+                                $tocRemove = trim_words($post->post_detail);
+                                $array  = array('[[toc]]','[[t1]]','[[/t1]]');
+                                $toc_replace = str_replace($array, '', $tocRemove);
+                                ?>
+                                <div class="text"> {!! $toc_replace !!}</div>
                                 <a href="{{ url($post->slug.'-'.'2'.$post->id) }}" target="_blank" rel="nofollow noopener" class="read-more">Read More <span class="arrow ion-ios-arrow-thin-right"></span></a>
                             </div>
                         </div>

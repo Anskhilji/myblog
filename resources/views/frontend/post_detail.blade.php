@@ -46,7 +46,10 @@
                             $content = str_replace("[[toc]]", $table, $content);
                             $tags = explode(",", $post->meta_tags);
                             $titles = explode(" ", $post->post_title);
+                            $InternalLinks = new \App\Helpers\InternalLinks;
+                             $content = $InternalLinks->building($post_id, $content, $post->internal_tags);
                             $content = do_short_code($content, $post_id,"blogs",$titles, $tags);
+
                         @endphp
                         {!! $content !!}
                     </div>
@@ -67,7 +70,8 @@
 
                     <div class="author-box row" id="author-box">
                         <div class="col-sm-2 col-md-3 col-lg-2 px-0 image-col">
-                            <img class="author-image" src="{{ !empty($post->cover_image) ? $post->cover_image : asset('frontend/images/no_image.jpg') }}" alt="author-image"> </div>
+                            <img class="author-image"
+                                 src="{{ $post->cover_image ? $post->cover_image : asset('frontend/images/no_image.jpg') }}" width="133" height="167" alt="author-image"> </div>
                         <div class="col-sm-10 col-md-9 col-lg-10 auth__desc-col">
                             <div class="authtop-box">
                               <a href="{{ url($post->auth_slug.'-'.'3'.$post->auth_id) }}">
@@ -116,7 +120,7 @@
                                 <div class="news-block-two small-block">
                                     <div class="inner-box">
                                         <div class="image">
-                                            <a href="{{ url($v->slug.'-'.'2'.$v->id) }}" ><img src="{{ $v->post_cover_image }}" alt="" /></a>
+                                            <a href="{{ url($v->slug.'-'.'2'.$v->id) }}" ><img src="{{ $v->post_cover_image }}" width="237" height="148" alt="" /></a>
                                         </div>
                                         <div class="lower-box">
                                             <h3><a href="{{ url($v->slug.'-'.'2'.$v->id) }}">{{ $v->post_title }}</a></h3>
